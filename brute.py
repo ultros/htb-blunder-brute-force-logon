@@ -35,15 +35,15 @@ def do_logon(username: str, password: str):
                            f"{random.randint(1, 254)}.{random.randint(1, 254)}"
     }
 
-    return requests.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False)
+    return requests.post(url, headers=headers, cookies=cookies, data=data, allow_redirects=False)
 
 
 def check_status(response):
     if "password incorrect" in response.text:
-        print("bad pass")
+        print("Incorrect Username/Password")
         return False
     elif "has been blocked" in response.text:
-        print("blocked")
+        print("IP Blocked")
         return False
     else:
         return True
